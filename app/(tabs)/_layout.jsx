@@ -23,7 +23,7 @@ const TabsLayout = () => {
         <Tabs
             screenOptions={{
                 tabBarShowLabel: false,
-                tabBarAccessibilityLabel: "#FFA001",
+                tabBarActiveTintColor: "#FFA001",
                 tabBarInactiveTintColor: "#CDCDE0",
                 tabBarStyle: {
                     backgroundColor: "#161622",
@@ -49,55 +49,53 @@ const TabsLayout = () => {
                 }}
             />
 
-             <Tabs.Screen 
-                name="bookmark"
-                options={{
-                    title: "Bookmark",
-                    headerShown: false,
-                    tabBarIcon: ({color, focused}) => (
-                        <TabIcon 
-                            icon={icons.home}
-                            color={color}
-                            name="Bookmark"
-                            focused={focused}
-                        />
-                    )
-                }}
-            />
-
-             <Tabs.Screen 
+            <Tabs.Screen 
                 name="create"
                 options={{
-                    title: "Create",
+                    title: "Ajouter",
                     headerShown: false,
                     tabBarIcon: ({color, focused}) => (
                         <TabIcon 
                             icon={icons.plus}
                             color={color}
-                            name="Create"
+                            name="Ajouter"
                             focused={focused}
                         />
                     )
                 }}
             />
 
-             <Tabs.Screen 
+            <Tabs.Screen 
                 name="profile"
                 options={{
-                    title: "Profile",
+                    title: "Profil",
                     headerShown: false,
                     tabBarIcon: ({color, focused}) => (
                         <TabIcon 
                             icon={icons.profile}
                             color={color}
-                            name="Home"
+                            name="Profil"
                             focused={focused}
                         />
                     )
                 }}
-            />
+            />  
 
-
+            <Tabs.Screen 
+                name="bookmark"
+                options={{
+                    title: "Favoris",
+                    headerShown: false,
+                    tabBarIcon: ({color, focused}) => (
+                        <TabIcon 
+                            icon={icons.bookmark}
+                            color={color}
+                            name="Favoris"
+                            focused={focused}
+                        />
+                    )
+                }}
+            /> 
         </Tabs>
     </>
   )
