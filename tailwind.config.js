@@ -2,6 +2,9 @@ module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        'gradient-primary': 'linear-gradient(to right, #0D4DB1, #C56BE4)', // Gradient pour primary
+      },
       colors: {
         primary: "#161622",
         secondary: {
@@ -17,6 +20,12 @@ module.exports = {
         gray: {
           100: "#CDCDE0",
         },
+        blue: {
+          100: "#0D4DB1"
+        },
+        purple: {
+          100: "#C56BE4"
+        }
       },
       fontFamily: {
         pthin: ["Poppins-Thin", "sans-serif"],
