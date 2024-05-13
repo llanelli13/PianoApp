@@ -8,6 +8,7 @@ import * as documentPicker from 'expo-document-picker'
 import { router } from 'expo-router'
 import { createPartition } from '../../lib/appwrite'
 import { useGlobalContext } from '../../context/GlobalProvider'
+import SelectInput from '../../components/SelectInput'
 
 const Create = () => {
 
@@ -20,6 +21,12 @@ const Create = () => {
     difficulte: ""
   })
 
+  const difficulties = [
+    { label: 'Debutant', value: 'Debutant' },
+    { label: 'Intermediaire', value: 'Intermediaire' },
+    { label: 'Difficile', value: 'Difficile' },
+    { label: 'Extrême', value: 'Extreme'}
+  ];
 
   const openPicker = async (selectType) => {
     const result = await documentPicker.getDocumentAsync({
@@ -33,6 +40,7 @@ const Create = () => {
   }
 
   const submit = async () => {
+    console.log("titre :", form.title, "\npartition :", form.partition, "\nartiste :", form.artiste, "\ndifficulte :", form.difficulte)
     if (form.artiste === "" || form.difficulte === "" || !form.partition || form.title === "") {
       return Alert.alert("Veuillez renseigner l'ensemble des champs")
     }
@@ -111,13 +119,11 @@ const Create = () => {
             handleChangeText={(e) => setForm({...form, artiste: e})}
             otherStyles="mt-2"
           />
-
-          <FormField 
-            title="Difficulté"
-            value={form.difficulte}
-            placeholder="Difficulté de la partition ..."
-            handleChangeText={(e) => setForm({...form, difficulte: e})}
-            otherStyles="mt-5"
+          
+          <SelectInput 
+            items={difficulties}
+            handleChange={(e) => setForm({...form, difficulte: e})}
+            otherStyles="mt-3"
           />
         </View>
 

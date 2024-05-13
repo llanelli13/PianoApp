@@ -5,12 +5,30 @@ import { icons } from '../constants'
 const PartitionCard = ({ partition : { title , artiste, difficulty, partition} }) => {
 
   const [play, setPlay] = useState(false)
+  const niveau = [
+    {title: "Debutant", color:"#2ce40e"},
+    {title: "Intermediaire", color:"#dfc80b"},
+    {title: "Difficile", color: "#f06626"},
+    {title: "Extreme", color: "#bd3c00"}
+  ]
+
+  const customColor = () => {
+    if (difficulty === niveau[0].title) {
+      return niveau[0].color
+    } else if (difficulty === niveau[1].title) {
+      return niveau[1].color
+    } else if (difficulty === niveau[2].title) {
+      return niveau[2].color
+    } else if (difficulty === niveau[3].title) {
+      return niveau[3].color
+    }
+  }
 
   return (
     <View className="flex-col items-center px-4 mb-14">
       <View className="flex-row gap-3 items-start">
         <View className="justify-center items-center flex-row flex-1">
-          <View className="w-[46px] h-[46px] rounded-lg border border-secondary justify-center items-center p-0.5">
+          <View style={{ backgroundColor: customColor(), width: 46, height: 46, borderRadius: 8, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#666666' }}>
           </View>
           <View className="justify-center flex-1 ml-3 gap-y-1">
             <Text className="text-white font-psemibold text-sm" numberOfLines={1}>
