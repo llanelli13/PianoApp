@@ -18,6 +18,7 @@ const Home = () => {
 
   const [refreshing, setRefreshing] = useState(false)
 
+ 
   const onRefresh = async () => {
     setRefreshing(true);
     await refetch();
@@ -32,6 +33,7 @@ const Home = () => {
         renderItem={({ item }) => (
           <PartitionCard
             partition={item}
+            canBeBookMarked={true}
           />
         )}
         ListHeaderComponent={() => (
@@ -71,8 +73,10 @@ const Home = () => {
         )}
         ListEmptyComponent={() => (
           <EmptyState 
+            buttonTitle="Créer votre partition !"
             title="Pas de partitions trouvées"
             subtitle="Ajoutez votre partition !"
+            redirect="/create"
           />
         )}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}

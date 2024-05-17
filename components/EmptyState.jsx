@@ -4,7 +4,7 @@ import {images} from '../constants'
 import CustomButton from './CustomButton'
 import { router } from 'expo-router'
 
-const EmptyState = ({title, subtitle}) => {
+const EmptyState = ({title, subtitle, redirect, buttonTitle}) => {
   return (
     <View className="justify-center items-center px-4">
        <Image 
@@ -20,8 +20,8 @@ const EmptyState = ({title, subtitle}) => {
     </Text>
 
     <CustomButton 
-        title="Ajouter partition"
-        handlePress={() => router.push('./create')}
+        title={buttonTitle}
+        handlePress={() => router.push(redirect)}
         containerStyles="w-full my-5"
     />
     </View>

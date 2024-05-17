@@ -1,9 +1,12 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { icons } from '../constants'
+import { addBookmark } from '../lib/appwrite'
+import { useGlobalContext } from '../context/GlobalProvider'
 
-const PartitionCard = ({ partition : { title , artiste, difficulty, partition} }) => {
+const PartitionCard = ({ partition, canBeBookMarked }) => {
 
+  const { user, setUser, setIsLoggedIn } = useGlobalContext()
   const [play, setPlay] = useState(false)
   const niveau = [
     {title: "Debutant", color:"#2ce40e"},
@@ -13,13 +16,13 @@ const PartitionCard = ({ partition : { title , artiste, difficulty, partition} }
   ]
 
   const customColor = () => {
-    if (difficulty === niveau[0].title) {
+    if (partition.difficulty === niveau[0].title) {
       return niveau[0].color
-    } else if (difficulty === niveau[1].title) {
+    } else if (partition.difficulty === niveau[1].title) {
       return niveau[1].color
-    } else if (difficulty === niveau[2].title) {
+    } else if (partition.difficulty === niveau[2].title) {
       return niveau[2].color
-    } else if (difficulty === niveau[3].title) {
+    } else if (partition.difficulty === niveau[3].title) {
       return niveau[3].color
     }
   }
@@ -32,31 +35,51 @@ const PartitionCard = ({ partition : { title , artiste, difficulty, partition} }
           </View>
           <View className="justify-center flex-1 ml-3 gap-y-1">
             <Text className="text-white font-psemibold text-sm" numberOfLines={1}>
-              {title}
+              {partition.title}
             </Text>
             <Text className="text-xs text-gray-100 font-pregular" numberOfLines={1}>
-              {artiste}
+              {partition.artiste}
             </Text>
           </View>
         </View>
         <View className="pt-2">
-          <Image 
-            source={icons.menu}
-            className="h-5 w-5"
-            resizeMode='contain'
-          />
+          { canBeBookMarked ? (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => addBookmark(user.$id, partition.$id)}
+            >
+              <Image 
+                source={icons.bookmark}
+                className="h-5 w-5"
+                resizeMode='contain'
+              />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => console.log("tqt")}
+            >
+              <Image 
+                source={icons.menu}
+                className="h-5 w-5"
+                resizeMode='contain'
+              />
+            </TouchableOpacity>
+
+          )}
+
         </View>
       </View>
-      {/* {play ? (
+      {play ? (
         <Text className="text-white">Playing</Text>
-      ) : (
+      ) : ( 
         <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => setPlay(true)}
           className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
         >
           <Image 
-            source={{uri: partition}}
+            source={{uri: partition.partition}}
             className="w-full h-full rounded-xl mt-3"
             resizeMode='cover'
           />
@@ -66,7 +89,7 @@ const PartitionCard = ({ partition : { title , artiste, difficulty, partition} }
             resizeMode='cover'
           />
         </TouchableOpacity> 
-      )} */}
+      )}
     </View>
   )
 }

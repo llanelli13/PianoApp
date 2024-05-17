@@ -3,7 +3,7 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import EmptyState from '../../components/EmptyState'
 import useAppwrite from '../../lib/useAppwrite'
-import { getUserPartitions, searchPartitions, signOut } from '../../lib/appwrite'
+import { getUserPartitions, signOut } from '../../lib/appwrite'
 import PartitionCard from '../../components/PartitionCard'
 import { useGlobalContext } from '../../context/GlobalProvider'
 import { icons } from '../../constants'
@@ -77,9 +77,11 @@ const Profile = () => {
           </View>
         )}
         ListEmptyComponent={() => (
-          <EmptyState 
+          <EmptyState
+            buttonTitle="Ajouter des partitions !" 
             title="Pas de partitions trouvées"
-            subtitle="Pas de partitions trouvées pour votre recherche"
+            subtitle="Vous n'avez pas de partitions, ajoutez en !"
+            redirect='/create'
           />
         )}
       />

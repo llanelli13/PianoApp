@@ -44,8 +44,10 @@ const Search = () => {
         )}
         ListEmptyComponent={() => (
           <EmptyState 
+            buttonTitle="Nouvelle recherche !"
             title="Pas de partitions trouvées"
             subtitle="Pas de partitions trouvées pour votre recherche"
+            redirect="/home"
           />
         )}
       />
