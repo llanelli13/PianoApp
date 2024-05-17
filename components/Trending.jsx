@@ -2,6 +2,7 @@ import { View, Text, FlatList, TouchableOpacity, ImageBackground, Image } from '
 import React, { useState } from 'react'
 import * as Animatable from 'react-native-animatable'
 import { icons } from '../constants'
+import MusicSheet from './MusicSheet'
 
 const zoomIn = {
   0: {
@@ -31,9 +32,10 @@ const TrendingItem = ({ activeItem, item }) => {
       duration={500}
     >
       { play ? (
-        <Text className="text-white">Playing</Text>
-        // Envoie de la partition en fichier midi au piano pour la jouer (A FAIRE QUAND ON SAURA PAR QUEL METHODE ON ENVOI)
-      ): (
+        <MusicSheet 
+          midiFileUrl={item.partition}
+        />
+      ) : (
         <TouchableOpacity
           className="relative justify-center items-center"
           activeOpacity={0.7}
