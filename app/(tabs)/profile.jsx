@@ -1,5 +1,5 @@
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import { View, Text, FlatList, TouchableOpacity, Image, RefreshControl } from 'react-native'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import EmptyState from '../../components/EmptyState'
 import useAppwrite from '../../lib/useAppwrite'
@@ -12,7 +12,9 @@ import { router } from 'expo-router'
 
 const Profile = () => {
   const { user, setUser, setIsLoggedIn } = useGlobalContext()
-  const { data: partitions} = useAppwrite(() => getUserPartitions(user.$id))
+  const { data: partitions, refetch} = useAppwrite(() => getUserPartitions(user.$id))
+
+  const [refreshing, setRefreshing] = useState(false)
 
   const logout = async () => {
     await signOut()
@@ -20,6 +22,12 @@ const Profile = () => {
     setIsLoggedIn(false)
     router.replace('/sign-in')
   }
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -84,6 +92,7 @@ const Profile = () => {
             redirect='/create'
           />
         )}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
       />
     </SafeAreaView>
   )

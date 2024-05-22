@@ -34,20 +34,18 @@ const Create = () => {
     })
 
     if (!result.canceled) {
-      console.log('asset :', result.assets[0])
       setForm({...form, partition: result.assets[0]})
     }
   }
 
   const submit = async () => {
-    console.log("titre :", form.title, "\npartition :", form.partition, "\nartiste :", form.artiste, "\ndifficulte :", form.difficulte)
     if (form.artiste === "" || form.difficulte === "" || !form.partition || form.title === "") {
       return Alert.alert("Veuillez renseigner l'ensemble des champs")
     }
 
     setUploading(true)
     try {
-      await createPartition(form)
+      await createPartition(form, user.$id)
 
       Alert.alert("Succès", "Partition enregistrée avec succès !")
       router.push('/home')

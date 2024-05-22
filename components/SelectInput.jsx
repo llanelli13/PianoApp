@@ -5,7 +5,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const SelectInput = ({ items, otherStyles, handleChange }) => {
   const [selectedValue, setSelectedValue] = useState(items.length ? items[0].value : '');
-  console.log("selectedValue :", selectedValue)
 
   const handleValueChange = (itemValue) => {
     setSelectedValue(itemValue);
