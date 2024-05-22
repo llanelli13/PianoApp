@@ -70,7 +70,7 @@ const SignIn = () => {
             <CustomButton
               title="Se connecter"
               handlePress={submit}
-              containerStyles="mt-7"
+              containerStyles="mt-5"
               isLoading={isSubmitting}
             />
 
@@ -78,6 +78,7 @@ const SignIn = () => {
               <Text className="text-lg text-gray-100 font-pregular">
                 Pas de compte ?
               </Text>
+
               <Link 
                 href="/sign-up" 
                 className='text-lg font-semibold text-secondary'>

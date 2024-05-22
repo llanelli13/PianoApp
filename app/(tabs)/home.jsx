@@ -47,14 +47,6 @@ const Home = () => {
                   {user?.username} !
                 </Text>
               </View>
-
-              <View className="mt-1.5">
-                <Image 
-                  source={images.logoSmall}
-                  className="w-9 h-10"
-                  resizeMode='contain'
-                />
-              </View>
             </View>
 
             <SearchInput />

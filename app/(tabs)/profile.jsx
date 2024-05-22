@@ -11,9 +11,8 @@ import InfoBox from '../../components/InfoBox'
 import { router } from 'expo-router'
 
 const Profile = () => {
-  const { user, setUser, setIsLogged } = useGlobalContext()
-  const { data: partitions, refetch} = useAppwrite(() => getUserPartitions(user.$id))
-  const [refreshing, setRefreshing] = useState(false)
+  const { user, setUser, setIsLoggedIn } = useGlobalContext()
+  const { data: partitions} = useAppwrite(() => getUserPartitions(user.$id))
 
   const logout = async () => {
     await signOut()
@@ -28,6 +27,7 @@ const Profile = () => {
     await refetch();
     setRefreshing(false);
   }
+
 
   return (
     <SafeAreaView className="bg-primary h-full">

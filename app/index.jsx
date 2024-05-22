@@ -27,14 +27,14 @@ export default function App() {
             </Text>
           </View>
 
-          <Text className="text-sm font-pregular text-gray-100 mt7 text-center">
+          <Text className="text-sm font-pregular text-gray-100 mt-7 text-center">
               Apprenez à jouer du piano, ou appréciez le piano jouer tout seul !
             </Text>
 
           <CustomButton
               title="Continuer avec Email"
               handlePress={() => router.push('/sign-in')}
-              containerStyles="w-full mt-10"
+              containerStyles="w-full mt-15"
            />
         </View>
       </ScrollView>
