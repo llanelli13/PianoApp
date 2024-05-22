@@ -8,13 +8,13 @@ const zoomIn = {
     scale: 0.9
   }, 
   1: {
-    scale: 1.1
+    scale: 1.05
   }
 }
 
 const zoomOut = {
   0: {
-    scale: 1
+    scale: 1.05
   }, 
   1: {
     scale: 0.9
@@ -26,7 +26,7 @@ const TrendingItem = ({ activeItem, item }) => {
   const [play, setPlay] = useState(false)
   return (
     <Animatable.View
-      className="mr-4 "
+      className="mr-4"
       animation={activeItem === item.$id ? zoomIn : zoomOut}
       duration={500}
     >
@@ -35,7 +35,7 @@ const TrendingItem = ({ activeItem, item }) => {
         // Envoie de la partition en fichier midi au piano pour la jouer (A FAIRE QUAND ON SAURA PAR QUEL METHODE ON ENVOI)
       ): (
         <TouchableOpacity
-          className="relative justify-center items-center"
+          className="relative justify-center items-center "
           activeOpacity={0.7}
           onPress={() => setPlay(true)}
         >

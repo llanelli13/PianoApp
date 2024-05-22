@@ -3,11 +3,13 @@ import React, { useState } from 'react'
 import { icons } from '../constants'
 import { addBookmark } from '../lib/appwrite'
 import { useGlobalContext } from '../context/GlobalProvider'
+import ContextMenu from './ContextMenu' // Import the new ContextMenu component
 
 const PartitionCard = ({ partition, canBeBookMarked }) => {
 
   const { user, setUser, setIsLoggedIn } = useGlobalContext()
   const [play, setPlay] = useState(false)
+  const [menuVisible, setMenuVisible] = useState(false) // State to manage menu visibility
   const niveau = [
     {title: "Debutant", color:"#2ce40e"},
     {title: "Intermediaire", color:"#dfc80b"},
@@ -27,10 +29,22 @@ const PartitionCard = ({ partition, canBeBookMarked }) => {
     }
   }
 
+  const handleDelete = () => {
+    // Add your delete logic here
+    console.log('Partition deleted')
+    setMenuVisible(false)
+  }
+
+  const handleSave = () => {
+    // Add your save logic here
+    console.log('Partition saved')
+    setMenuVisible(false)
+  }
+
   return (
     <View className="flex-col items-center px-4 mb-14">
       <View className="flex-row gap-3 items-start">
-        <View className="justify-center items-center flex-row flex-1">
+        <View className="justify-center items-center flex-row flex-1 ">
           <View style={{ backgroundColor: customColor(), width: 46, height: 46, borderRadius: 8, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#666666' }}>
           </View>
           <View className="justify-center flex-1 ml-3 gap-y-1">
@@ -42,7 +56,7 @@ const PartitionCard = ({ partition, canBeBookMarked }) => {
             </Text>
           </View>
         </View>
-        <View className="pt-2">
+        <View className="pt-2 mr-1">
           { canBeBookMarked ? (
             <TouchableOpacity
               activeOpacity={0.7}
@@ -57,7 +71,7 @@ const PartitionCard = ({ partition, canBeBookMarked }) => {
           ) : (
             <TouchableOpacity
               activeOpacity={0.7}
-              onPress={() => console.log("tqt")}
+              onPress={() => setMenuVisible(!menuVisible)}
             >
               <Image 
                 source={icons.menu}
@@ -65,11 +79,12 @@ const PartitionCard = ({ partition, canBeBookMarked }) => {
                 resizeMode='contain'
               />
             </TouchableOpacity>
-
           )}
-
         </View>
       </View>
+      {menuVisible && (
+        <ContextMenu onDelete={handleDelete} onSave={handleSave} />
+      )}
       {play ? (
         <Text className="text-white">Playing</Text>
       ) : ( 
