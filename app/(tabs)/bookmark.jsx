@@ -24,8 +24,7 @@ const Bookmark = () => {
   };
 
   return (
-    <SafeAreaView className="px-4 my-6 bg-primary h-full">
-      <Text className="text-2xl text-white font-psemibold mb-5">Vos favoris</Text>
+    <SafeAreaView className="bg-primary h-full">
       
       <FlatList
         data={partitions}
@@ -37,10 +36,12 @@ const Bookmark = () => {
           />
         )}
         ListHeaderComponent={() => (
-          <View className="flex my-6 space-y-6">
+          <View className="flex my-6 px-4 space-y-6">
+            <View className="flex justify-between item-start flex-row mb-6">
+              <Text className="text-2xl text-white font-psemibold mb-5">Vos favoris</Text>
+            </View>
 
             <SearchInput />
-
           </View>
         )}
         ListEmptyComponent={() => (
