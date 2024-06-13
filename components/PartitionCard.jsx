@@ -5,7 +5,7 @@ import { addBookmark, deletePartition } from '../lib/appwrite';
 import { useGlobalContext } from '../context/GlobalProvider';
 import ContextMenu from './ContextMenu';
 
-const PartitionCard = ({ partition, canBeBookMarked }) => {
+const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
   const { user } = useGlobalContext();
   const [play, setPlay] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -33,6 +33,7 @@ const PartitionCard = ({ partition, canBeBookMarked }) => {
     try {
       await deletePartition(partition.$id);
       console.log("Partition deleted successfully");
+      onDelete(); // Appeler la fonction de rappel
     } catch (err) {
       console.error("Failed to delete partition:", err.message);
     }

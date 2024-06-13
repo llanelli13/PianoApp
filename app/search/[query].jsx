@@ -12,8 +12,6 @@ const Search = () => {
   const { query } = useLocalSearchParams()
   const { data: partitions, refetch } = useAppwrite(() => searchPartitions(query))
 
-  console.log(query, partitions)
-
   useEffect(() => {
     refetch()
   }, [query])
