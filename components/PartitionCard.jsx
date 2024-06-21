@@ -99,7 +99,7 @@ const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
       )}
       {play ? (
          //<PDFViewer uri={partition.partition} />
-         <Text>Playing...</Text>
+         <Text className="text-white">Playing...</Text>
       ) : (
         <TouchableOpacity
           activeOpacity={0.7}

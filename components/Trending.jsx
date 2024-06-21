@@ -1,6 +1,214 @@
-import { View, Text, FlatList, TouchableOpacity, ImageBackground, Image } from 'react-native'
+// import { View, Text, FlatList, TouchableOpacity, ImageBackground, Image } from 'react-native'
+// import React, { useState } from 'react'
+// import * as Animatable from 'react-native-animatable'
+// import { icons } from '../constants'
+// import MusicSheet from './MusicSheet'
+
+// const zoomIn = {
+//   0: {
+//     scale: 0.9
+//   }, 
+//   1: {
+//     scale: 1.05
+//   }
+// }
+
+// const zoomOut = {
+//   0: {
+//     scale: 1.05
+//   }, 
+//   1: {
+//     scale: 0.9
+//   }
+// }
+
+// const TrendingItem = ({ activeItem, item }) => {
+
+//   const [play, setPlay] = useState(false)
+//   return (
+//     <Animatable.View
+//       className="mr-4"
+//       animation={activeItem === item.$id ? zoomIn : zoomOut}
+//       duration={500}
+//     >
+//       { play ? (
+//         <MusicSheet 
+//           midiFileUrl={item.partition}
+//         />
+//       ) : (
+//         <TouchableOpacity
+//           className="relative justify-center items-center "
+//           activeOpacity={0.7}
+//           onPress={() => setPlay(true)}
+//         >
+//           <ImageBackground
+//             source={{uri : item.image}}
+//             className="w-52 h-72 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black/40"
+//             resizeMode='cover'
+//           />
+
+//           <Image 
+//             source={icons.play}
+//             className="h-12 w-12 absolute"
+//             resizeMode="contain"
+//           />
+
+//           <Text className="text-white font-psemibold">
+//             {item.title}
+//           </Text>
+//         </TouchableOpacity>
+//       )}
+
+//     </Animatable.View>
+//   )
+// }
+
+// const Trending = ({ posts }) => {
+
+//   const [activeItem, setActiveItem] = useState(posts[1])
+
+//   const viewableItemsChanged = ({ viewableItems }) => {
+//     if (viewableItems.length > 0) {
+//       setActiveItem(viewableItems[0].key)
+//     }
+//   }
+
+
+//   return (
+//     <FlatList 
+//         data={posts}
+//         keyExtractor={(item) => item.$id}
+//         renderItem={({ item }) => (
+//           <TrendingItem activeItem={activeItem} item={item}/>
+//         )}
+//         onViewableItemsChanged={viewableItemsChanged}
+//         viewabilityConfig={{
+//           itemVisiblePercentThreshold: 70
+//         }}
+//         contentOffset={{x: 170}}
+//         horizontal
+//     />
+//   )
+// }
+
+// export default Trending
+
+
+// import { View, Text, FlatList, TouchableOpacity, ImageBackground, Image } from 'react-native'
+// import React, { useState } from 'react'
+// import * as Animatable from 'react-native-animatable'
+// import * as FileSystem from 'expo-file-system'
+// import * as Sharing from 'expo-sharing'
+// import { icons } from '../constants'
+// import MusicSheet from './MusicSheet'
+
+// const zoomIn = {
+//   0: {
+//     scale: 0.9
+//   }, 
+//   1: {
+//     scale: 1.05
+//   }
+// }
+
+// const zoomOut = {
+//   0: {
+//     scale: 1.05
+//   }, 
+//   1: {
+//     scale: 0.9
+//   }
+// }
+
+// const TrendingItem = ({ activeItem, item }) => {
+
+//   const [play, setPlay] = useState(false)
+
+//   const downloadAndOpenPDF = async (url) => {
+//     try {
+//       const fileUri = `${FileSystem.documentDirectory}${item.title}.pdf`
+//       const { uri } = await FileSystem.downloadAsync(url, fileUri)
+
+//       Sharing.shareAsync(uri)
+//         .catch((err) => console.error('An error occurred', err));
+//     } catch (err) {
+//       console.error('An error occurred', err);
+//     }
+//   }
+
+//   return (
+//     <Animatable.View
+//       className="mr-4"
+//       animation={activeItem === item.$id ? zoomIn : zoomOut}
+//       duration={500}
+//     >
+//       { play ? (
+//         <MusicSheet 
+//           midiFileUrl={item.partition}
+//         />
+//       ) : (
+//         <TouchableOpacity
+//           className="relative justify-center items-center "
+//           activeOpacity={0.7}
+//           onPress={() => downloadAndOpenPDF(item.partition_texte)}
+//         >
+//           <ImageBackground
+//             source={{uri : item.image}}
+//             className="w-52 h-72 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black/40"
+//             resizeMode='cover'
+//           />
+
+//           <Image 
+//             source={icons.play}
+//             className="h-12 w-12 absolute"
+//             resizeMode="contain"
+//           />
+
+//           <Text className="text-white font-psemibold">
+//             {item.title}
+//           </Text>
+//         </TouchableOpacity>
+//       )}
+
+//     </Animatable.View>
+//   )
+// }
+
+// const Trending = ({ posts }) => {
+
+//   const [activeItem, setActiveItem] = useState(posts[1])
+
+//   const viewableItemsChanged = ({ viewableItems }) => {
+//     if (viewableItems.length > 0) {
+//       setActiveItem(viewableItems[0].key)
+//     }
+//   }
+
+//   return (
+//     <FlatList 
+//         data={posts}
+//         keyExtractor={(item) => item.$id}
+//         renderItem={({ item }) => (
+//           <TrendingItem activeItem={activeItem} item={item}/>
+//         )}
+//         onViewableItemsChanged={viewableItemsChanged}
+//         viewabilityConfig={{
+//           itemVisiblePercentThreshold: 70
+//         }}
+//         contentOffset={{x: 170}}
+//         horizontal
+//     />
+//   )
+// }
+
+// export default Trending
+
+
 import React, { useState } from 'react'
+import { View, Text, FlatList, TouchableOpacity, ImageBackground, Image } from 'react-native'
 import * as Animatable from 'react-native-animatable'
+import * as FileSystem from 'expo-file-system'
+import * as Sharing from 'expo-sharing'
 import { icons } from '../constants'
 import MusicSheet from './MusicSheet'
 
@@ -25,24 +233,42 @@ const zoomOut = {
 const TrendingItem = ({ activeItem, item }) => {
 
   const [play, setPlay] = useState(false)
+  const [isDownloading, setIsDownloading] = useState(false)
+
+  const downloadAndSharePDF = async (url) => {
+    setIsDownloading(true)
+    try {
+      const fileUri = `${FileSystem.documentDirectory}${item.title}.pdf`
+      const { uri } = await FileSystem.downloadAsync(url, fileUri)
+
+      // Use expo-sharing to share the PDF file
+      await Sharing.shareAsync(uri)
+    } catch (err) {
+      console.error('An error occurred', err)
+    } finally {
+      setIsDownloading(false)
+    }
+  }
+
   return (
     <Animatable.View
       className="mr-4"
       animation={activeItem === item.$id ? zoomIn : zoomOut}
       duration={500}
     >
-      { play ? (
+      {play ? (
         <MusicSheet 
           midiFileUrl={item.partition}
         />
       ) : (
         <TouchableOpacity
-          className="relative justify-center items-center "
+          className="relative justify-center items-center"
           activeOpacity={0.7}
-          onPress={() => setPlay(true)}
+          onPress={() => downloadAndSharePDF(item.partition_texte)}
+          disabled={isDownloading}
         >
           <ImageBackground
-            source={{uri : item.image}}
+            source={{ uri: item.image }}
             className="w-52 h-72 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black/40"
             resizeMode='cover'
           />
@@ -56,9 +282,14 @@ const TrendingItem = ({ activeItem, item }) => {
           <Text className="text-white font-psemibold">
             {item.title}
           </Text>
+
+          {isDownloading && (
+            <Text className="text-white font-psemibold">
+              Téléchargement...
+            </Text>
+          )}
         </TouchableOpacity>
       )}
-
     </Animatable.View>
   )
 }
@@ -73,22 +304,22 @@ const Trending = ({ posts }) => {
     }
   }
 
-
   return (
     <FlatList 
-        data={posts}
-        keyExtractor={(item) => item.$id}
-        renderItem={({ item }) => (
-          <TrendingItem activeItem={activeItem} item={item}/>
-        )}
-        onViewableItemsChanged={viewableItemsChanged}
-        viewabilityConfig={{
-          itemVisiblePercentThreshold: 70
-        }}
-        contentOffset={{x: 170}}
-        horizontal
+      data={posts}
+      keyExtractor={(item) => item.$id}
+      renderItem={({ item }) => (
+        <TrendingItem activeItem={activeItem} item={item} />
+      )}
+      onViewableItemsChanged={viewableItemsChanged}
+      viewabilityConfig={{
+        itemVisiblePercentThreshold: 70
+      }}
+      contentOffset={{ x: 170 }}
+      horizontal
     />
   )
 }
 
 export default Trending
+
