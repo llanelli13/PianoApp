@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import React, { useState } from 'react';
 import { icons } from '../constants';
 import { addBookmark, deletePartition } from '../lib/appwrite';
@@ -98,7 +98,6 @@ const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
         />
       )}
       {play ? (
-         //<PDFViewer uri={partition.partition} />
          <Text>Playing...</Text>
       ) : (
         <TouchableOpacity
@@ -106,7 +105,7 @@ const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
           onPress={() => setPlay(true)}
           className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
         >
-          <Image
+          <ImageBackground
             source={{ uri: partition.image }}
             className="w-full h-full rounded-xl mt-3"
             resizeMode='cover'

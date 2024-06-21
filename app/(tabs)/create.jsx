@@ -189,11 +189,9 @@ const Create = () => {
     }
 
     const result = await documentPicker.getDocumentAsync({ type })
-    console.log("picker :", result)
 
     if (!result.canceled) {
       setForm({...form, [selectType]: result.assets[0]})
-      console.log("form :", form)
     }
   }
 
@@ -206,8 +204,7 @@ const Create = () => {
     try {
       await createPartition(form, user.$id)
 
-      Alert.alert("Succès", "Partition enregistrée avec succès !")
-      console.log("res :", form)
+      console.log('Partition créée avec succès !')
       router.push('/home')
     } catch (err) {
       Alert.alert('Erreur', err.message)
