@@ -98,7 +98,7 @@ const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
         />
       )}
       {play ? (
-         <Text>Playing...</Text>
+         <Text className="text-white">Playing...</Text>
       ) : (
         <TouchableOpacity
           activeOpacity={0.7}
