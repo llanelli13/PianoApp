@@ -42,7 +42,7 @@ const TrendingItem = ({ activeItem, item }) => {
           onPress={() => setPlay(true)}
         >
           <ImageBackground
-            source={{uri : item.partition}}
+            source={{uri : item.image}}
             className="w-52 h-72 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black/40"
             resizeMode='cover'
           />

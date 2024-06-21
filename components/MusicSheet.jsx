@@ -4,8 +4,6 @@ import Svg, { Line, Text as SvgText } from 'react-native-svg';
 import { Midi } from '@tonejs/midi';
 
 const MusicSheet = ({ midiFileUrl }) => {
-
-    console.log("file : ", midiFileUrl)
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {

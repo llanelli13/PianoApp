@@ -98,7 +98,8 @@ const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
         />
       )}
       {play ? (
-        <Text className="text-white">Playing</Text>
+         //<PDFViewer uri={partition.partition} />
+         <Text>Playing...</Text>
       ) : (
         <TouchableOpacity
           activeOpacity={0.7}
@@ -106,7 +107,7 @@ const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
           className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
         >
           <Image
-            source={{ uri: partition.partition }}
+            source={{ uri: partition.image }}
             className="w-full h-full rounded-xl mt-3"
             resizeMode='cover'
           />
