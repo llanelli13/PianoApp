@@ -3,6 +3,8 @@
 # dependencies
 node_modules/
 .env
+upload.py
+sync_midi_to_appwrite.py
 
 # Expo
 .expo/
