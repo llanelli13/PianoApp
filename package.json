@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-native-picker/picker": "2.6.1",
     "@tonejs/midi": "^2.0.28",
+    "appwrite": "^15.0.0",
     "expo-av": "~13.10.6",
     "expo-constants": "~15.4.6",
     "expo-document-picker": "^11.10.1",

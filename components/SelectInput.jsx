@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const SelectInput = ({ items, otherStyles, handleChange }) => {
+const SelectInput = ({ name, items, otherStyles, handleChange }) => {
   const [selectedValue, setSelectedValue] = useState(items.length ? items[0].value : '');
 
   const handleValueChange = (itemValue) => {
@@ -13,7 +13,7 @@ const SelectInput = ({ items, otherStyles, handleChange }) => {
 
   return (
     <View className={`space-y-2 ${otherStyles}`}> 
-      <Text className="text-base text-gray-100 font-pmedium">Difficulté</Text>
+      <Text className="text-base text-gray-100 font-pmedium">{name}</Text>
       <LinearGradient
         colors={['#0D4DB1', '#C56BE4']}
         start={[0, 0]}

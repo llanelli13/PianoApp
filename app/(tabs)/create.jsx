@@ -196,7 +196,7 @@ const Create = () => {
   }
 
   const submit = async () => {
-    if (form.artiste === "" || form.difficulte === "" || !form.partition || !form.partition_texte || !form.image || form.title === "") {
+    if (form.artiste === "" || form.difficulte === "" || !form.partition || form.title === "") {
       return Alert.alert("Veuillez renseigner l'ensemble des champs et importer tous les fichiers")
     }
 
@@ -303,6 +303,7 @@ const Create = () => {
           />
           
           <SelectInput 
+            name="Difficulté"
             items={difficulties}
             handleChange={(e) => setForm({...form, difficulte: e})}
             otherStyles="mt-3"
