@@ -5,6 +5,8 @@ import * as FileSystem from 'expo-file-system'
 import * as Sharing from 'expo-sharing'
 import { icons } from '../constants'
 import MusicSheet from './MusicSheet'
+import { useGlobalContext } from '../context/GlobalProvider'
+import { useRouter } from 'expo-router';
 
   const zoomIn = {
     0: {
@@ -26,8 +28,14 @@ import MusicSheet from './MusicSheet'
 
   const TrendingItem = ({ activeItem, item }) => {
 
+  const router = useRouter()
   const [play, setPlay] = useState(false)
-  const [isDownloading, setIsDownloading] = useState(false)
+  const { setSelectedObject } = useGlobalContext()
+
+  const renderPlayScreen = () => {
+    setSelectedObject(item)
+    router.push('/search/Play')
+  }
 
   return (
     <Animatable.View
@@ -35,16 +43,10 @@ import MusicSheet from './MusicSheet'
       animation={activeItem === item.$id ? zoomIn : zoomOut}
       duration={500}
     >
-      {play ? (
-        <MusicSheet 
-          midiFileUrl={item.partition}
-        />
-      ) : (
         <TouchableOpacity
           className="relative justify-center items-center"
           activeOpacity={0.7}
-          onPress={() => console.log(item.title, item.played)}
-          disabled={isDownloading}
+          onPress={() => renderPlayScreen()}
         >
           <ImageBackground
             source={{ uri: item.image}}
@@ -61,14 +63,7 @@ import MusicSheet from './MusicSheet'
           <Text className="text-white font-psemibold">
             {item.title}
           </Text>
-
-          {isDownloading && (
-            <Text className="text-white font-psemibold">
-              Téléchargement...
-            </Text>
-          )}
         </TouchableOpacity>
-      )}
     </Animatable.View>
   )
 }

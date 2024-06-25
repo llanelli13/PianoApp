@@ -4,9 +4,11 @@ import { icons } from '../constants';
 import { addBookmark, deletePartition } from '../lib/appwrite';
 import { useGlobalContext } from '../context/GlobalProvider';
 import ContextMenu from './ContextMenu';
+import { useRouter } from 'expo-router';
 
 const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
-  const { user } = useGlobalContext();
+  const router = useRouter()
+  const { user, setSelectedObject } = useGlobalContext();
   const [play, setPlay] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -28,6 +30,11 @@ const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
       return niveau[3].color;
     }
   };
+
+  const renderPlayScreen = () => {
+    setSelectedObject(partition)
+    router.push('/search/Play')
+  }
 
   const handleDelete = async () => {
     try {
@@ -98,11 +105,11 @@ const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
         />
       )}
       {play ? (
-         <Text className="text-white">Playing...</Text>
+        console.log('nul')
       ) : (
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => setPlay(true)}
+          onPress={() => renderPlayScreen()}
           className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
         >
           <ImageBackground
