@@ -162,7 +162,10 @@ const Create = () => {
     artiste: "",
     difficulte: "",
     partition_texte: null,
-    image: null
+    image: null,
+    played: 10,
+    genre: "Unknown"
+
   })
 
   const difficulties = [
@@ -212,12 +215,16 @@ const Create = () => {
     } finally {
       setForm({
         title: "",
-        partition: null,
-        pdf: null,
-        image: null,
         artiste: "",
-        difficulte: ""
+        difficulte: "",
+        partition: null,
+        partition_texte: null,
+        image: null,
+        played: 10,
+        genre: 'Unknown'
       })
+
+      console.log('form :', form)
 
       setUploading(false)
     }

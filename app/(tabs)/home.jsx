@@ -5,13 +5,14 @@ import SelectInput from '../../components/SelectInput';
 import SearchInput from '../../components/SearchInput';
 import Trending from '../../components/Trending';
 import EmptyState from '../../components/EmptyState';
-import { getPartitionsByGenre, getAllPartitions } from '../../lib/appwrite';
+import { getPartitionsByGenre, getAllPartitions, getTrendingPartitions } from '../../lib/appwrite';
 import PartitionCard from '../../components/PartitionCard';
 import { useGlobalContext } from '../../context/GlobalProvider';
 
 const Home = () => {
   const { user } = useGlobalContext();
   const [partitions, setPartitions] = useState([]);
+  const [TrendingPartitions, setTrendingPartitions] = useState([])
   const [offset, setOffset] = useState(0);
   const [loadingMore, setLoadingMore] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -56,14 +57,26 @@ const Home = () => {
     }
   };
 
+  const loadTrendingPartitions = async () => {
+    try {
+      const trending = await getTrendingPartitions();
+      setTrendingPartitions(trending);
+    } catch (err) {
+      Alert.alert('Erreur', 'Impossible de charger les partitions tendances');
+      console.log('err :', err);
+    }
+  };
+
   useEffect(() => {
     loadPartitions(true);
+    loadTrendingPartitions()
   }, [selectedGenre]);
 
   const onRefresh = async () => {
     setRefreshing(true);
     setSelectedGenre("")
     await loadPartitions(true);
+    await loadTrendingPartitions()
     setRefreshing(false);
   };
 
@@ -105,7 +118,7 @@ const Home = () => {
                 Partitions du moment
               </Text>
               <Trending
-                posts={partitions ?? []}
+                posts={TrendingPartitions ?? []}
               />
             </View>
 
