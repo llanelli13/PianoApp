@@ -141,7 +141,7 @@ const Home = () => {
         ListFooterComponent={() => (
           <View className="py-4">
             <TouchableOpacity onPress={loadMore} disabled={loadingMore}>
-              <Text className="text-center text-blue-500">
+              <Text className="text-center text-purple-100">
                 {loadingMore ? 'Chargement...' : 'Charger 10 morceaux de plus'}
               </Text>
             </TouchableOpacity>

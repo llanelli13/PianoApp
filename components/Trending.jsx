@@ -8,28 +8,27 @@ import MusicSheet from './MusicSheet'
 import { useGlobalContext } from '../context/GlobalProvider'
 import { useRouter } from 'expo-router';
 
-  const zoomIn = {
-    0: {
-      scale: 0.9
-    }, 
-    1: {
-      scale: 1.05
-    }
+const zoomIn = {
+  0: {
+    scale: 0.9
+  }, 
+  1: {
+    scale: 1.05
   }
+}
 
-  const zoomOut = {
-    0: {
-      scale: 1.05
-    }, 
-    1: {
-      scale: 0.9
-    }
+const zoomOut = {
+  0: {
+    scale: 1.05
+  }, 
+  1: {
+    scale: 0.9
   }
+}
 
-  const TrendingItem = ({ activeItem, item }) => {
+const TrendingItem = ({ activeItem, item }) => {
 
   const router = useRouter()
-  const [play, setPlay] = useState(false)
   const { setSelectedObject } = useGlobalContext()
 
   const renderPlayScreen = () => {
@@ -43,40 +42,44 @@ import { useRouter } from 'expo-router';
       animation={activeItem === item.$id ? zoomIn : zoomOut}
       duration={500}
     >
-        <TouchableOpacity
-          className="relative justify-center items-center"
-          activeOpacity={0.7}
-          onPress={() => renderPlayScreen()}
+      <TouchableOpacity
+        className="relative justify-center items-center"
+        activeOpacity={0.7}
+        onPress={() => renderPlayScreen()}
+      >
+        <ImageBackground
+          source={{ uri: item.image }}
+          className="w-52 h-72 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black/40"
+          resizeMode='cover'
+        />
+
+        <Image 
+          source={icons.play}
+          className="h-12 w-12 absolute"
+          resizeMode="contain"
+        />
+
+        <Text 
+          className="text-white font-psemibold w-52 text-center mt-2"
+          numberOfLines={1}
+          ellipsizeMode="tail"
         >
-          <ImageBackground
-            source={{ uri: item.image}}
-            className="w-52 h-72 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black/40"
-            resizeMode='cover'
-          />
-
-            <Image 
-              source={icons.play}
-              className="h-12 w-12 absolute"
-              resizeMode="contain"
-            />
-
-          <Text className="text-white font-psemibold">
-            {item.title}
-          </Text>
-        </TouchableOpacity>
+          {item.title}
+        </Text>
+      </TouchableOpacity>
     </Animatable.View>
   )
 }
 
-  const Trending = ({ posts }) => {
+const Trending = ({ posts }) => {
 
-    const [activeItem, setActiveItem] = useState(posts[1])
+  const [activeItem, setActiveItem] = useState(posts[1])
 
-    const viewableItemsChanged = ({ viewableItems }) => {
-      if (viewableItems.length > 0) {
-        setActiveItem(viewableItems[0].key)
-      }
+  const viewableItemsChanged = ({ viewableItems }) => {
+    if (viewableItems.length > 0) {
+      setActiveItem(viewableItems[0].key)
     }
+  }
 
   return (
     <FlatList 
@@ -96,4 +99,3 @@ import { useRouter } from 'expo-router';
 }
 
 export default Trending
-

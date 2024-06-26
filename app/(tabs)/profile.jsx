@@ -38,6 +38,7 @@ const Profile = () => {
         renderItem={({ item }) => (
           <PartitionCard
             partition={item}
+            printImage={true}
           />
         )}
         ListHeaderComponent={() => (

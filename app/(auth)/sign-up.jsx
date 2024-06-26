@@ -47,8 +47,8 @@ const signUp = () => {
               className="w-[300px] h-[100px]"
             />
           </View>
-          <View className='mt-7'>
-            <Text className="text-2xl text-white text-semibold mt-10 font-psemibold"> 
+          <View className='mt-5'>
+            <Text className="text-2xl text-white text-semibold mt-8 font-psemibold"> 
               Inscription
             </Text>
 
@@ -87,7 +87,7 @@ const signUp = () => {
               </Text>
               <Link 
                 href="/sign-in" 
-                className='text-lg font-semibold text-secondary'>
+                className='text-lg font-semibold text-purple-100'>
                 Se connecter
               </Link>
             </View>

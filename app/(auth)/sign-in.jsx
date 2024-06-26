@@ -80,7 +80,7 @@ const SignIn = () => {
 
               <Link 
                 href="/sign-up" 
-                className='text-lg font-semibold text-secondary'>
+                className='text-lg font-semibold text-purple-100'>
                 S'inscrire 
               </Link>
             </View>

@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-masked-view/masked-view": "^0.3.1",
     "@react-native-picker/picker": "2.6.1",
     "@tonejs/midi": "^2.0.28",
     "appwrite": "^15.0.0",
@@ -38,7 +39,9 @@
     "react-native-select-dropdown": "^4.0.1",
     "react-native-svg": "^15.2.0",
     "react-native-url-polyfill": "^2.0.0",
-    "react-native-webview": "^13.10.4"
+    "react-native-webview": "^13.10.4",
+    "react-native-web": "~0.19.6",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

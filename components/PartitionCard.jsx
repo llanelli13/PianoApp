@@ -6,7 +6,7 @@ import { useGlobalContext } from '../context/GlobalProvider';
 import ContextMenu from './ContextMenu';
 import { useRouter } from 'expo-router';
 
-const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
+const PartitionCard = ({ partition, canBeBookMarked, onDelete, printImage }) => {
   const router = useRouter()
   const { user, setSelectedObject } = useGlobalContext();
   const [play, setPlay] = useState(false);
@@ -47,9 +47,9 @@ const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
   };
 
   return (
-    <View className="flex-col items-center px-4 mb-14">
+    <View className="flex-col items-center px-4 mb-6">
       <View className="flex-row gap-3 items-start">
-        <View className="justify-center items-center flex-row flex-1 ">
+        <View className="justify-center items-center flex-row flex-1">
           <View
             style={{
               backgroundColor: customColor(),
@@ -64,12 +64,17 @@ const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
           >
           </View>
           <View className="justify-center flex-1 ml-3 gap-y-1">
-            <Text className="text-white font-psemibold text-sm" numberOfLines={1}>
-              {partition.title}
-            </Text>
-            <Text className="text-xs text-gray-100 font-pregular" numberOfLines={1}>
-              {partition.artiste}
-            </Text>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => renderPlayScreen()}
+            >
+              <Text className="text-white font-psemibold text-sm" numberOfLines={1}>
+                {partition.title}
+              </Text>
+              <Text className="text-xs text-gray-100 font-pregular" numberOfLines={1}>
+                {partition.artiste}
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View className="pt-2 mr-1">
@@ -104,26 +109,28 @@ const PartitionCard = ({ partition, canBeBookMarked, onDelete }) => {
           onSave={() => console.log("ajouter")}
         />
       )}
-      {play ? (
-        console.log('nul')
-      ) : (
-        <TouchableOpacity
+
+      { printImage ? (
+        <>
+          <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => renderPlayScreen()}
           className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
         >
           <ImageBackground
-            source={{ uri: partition.image }}
-            className="w-full h-full rounded-xl mt-3"
-            resizeMode='cover'
-          />
-          <Image
-            source={icons.play}
-            className="w-12 h-12 absolute"
-            resizeMode='cover'
-          />
-        </TouchableOpacity>
-      )}
+              source={{ uri: partition.image }}
+              className="w-full h-full rounded-xl mt-3"
+              resizeMode='cover'
+            />
+            <Image
+              source={icons.play}
+              className="w-12 h-12 absolute"
+              resizeMode='cover'
+            />
+          </TouchableOpacity>
+        </>
+      ) : ""}
+      
     </View>
   );
 };

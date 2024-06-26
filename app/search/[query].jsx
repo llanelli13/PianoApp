@@ -24,6 +24,7 @@ const Search = () => {
         renderItem={({ item }) => (
           <PartitionCard
             partition={item}
+            printImage={true}
           />
         )}
         ListHeaderComponent={() => (

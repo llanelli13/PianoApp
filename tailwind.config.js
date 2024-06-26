@@ -24,7 +24,7 @@ module.exports = {
           100: "#0D4DB1"
         },
         purple: {
-          100: "#C56BE4"
+          100: "#924df4"
         }
       },
       fontFamily: {

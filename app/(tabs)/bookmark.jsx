@@ -35,6 +35,7 @@ const Bookmark = () => {
             partition={item}
             canBeBookMarked={false}
             onDelete={handlePartitionDelete}
+            printImage={true}
           />
         )}
         ListHeaderComponent={() => (
