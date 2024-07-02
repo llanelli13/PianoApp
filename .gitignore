@@ -9,6 +9,7 @@ downloaded_midis
 dl_file.py
 dl_file.js
 midi_repertoire.db
+server.js
 
 # Expo
 .expo/
