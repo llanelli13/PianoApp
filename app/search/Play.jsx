@@ -1,28 +1,41 @@
-import { Alert, ScrollView, StyleSheet, Text, View, Image, ImageBackground } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { useLocalSearchParams } from 'expo-router'
-import { useGlobalContext } from '../../context/GlobalProvider'
-import CustomButton from '../../components/CustomButton'
+import { Alert, ScrollView, StyleSheet, Text, View, ImageBackground } from 'react-native';
+import React from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useGlobalContext } from '../../context/GlobalProvider';
+import CustomButton from '../../components/CustomButton';
+import { downloadBlob } from '../../lib/dl_file'
 
 const Play = () => {
 
     const { selectedObject } = useGlobalContext()
 
-    const afficherPartitionEcrite = () => {
-        Alert.alert("Erreur", "Pas de partitions")
-    }
+    const handleSoloClick = async () => {
+      if (selectedObject && selectedObject.partition) {
+          try {
+              await downloadBlob(selectedObject.partition);
+              Alert.alert("Succès", `Le fichier ${selectedObject.partition} a été téléchargé avec succès.`);
+          } catch (error) {
+              Alert.alert("Erreur", `Erreur lors du téléchargement du fichier ${selectedObject.partition}: ${error.message}`);
+          }
+      } else {
+          Alert.alert("Erreur", "Aucun fichier de partition sélectionné.");
+      }
+  };
 
-    const envoiTCP = (educatif) => {
-        if (!educatif) {
-            Alert.alert('Mode', 'SOLO')
-            // Logique envoi TCP mode SOLO
-        } else {
-            Alert.alert("Mode", "Educatif")
-            // Logique envoi TCP mode EDUCATIF
-        }
+  const handleEducatifClick = async () => {
+      if (selectedObject && selectedObject.partition) {
+          try {
+              await downloadBlob(selectedObject.partition);
+              Alert.alert("Succès", `Le fichier ${selectedObject.partition} a été téléchargé avec succès.`);
+          } catch (error) {
+              Alert.alert("Erreur", `Erreur lors du téléchargement du fichier ${selectedObject.partition}: ${error.message}`);
+              console.log(`Erreur lors du téléchargement du fichier ${selectedObject.partition}: ${error.message}`)
+          }
+      } else {
+          Alert.alert("Erreur", "Aucun fichier de partition sélectionné.");
+      }
+  };
 
-    }
   return (
     <SafeAreaView className="bg-primary h-full">
         <ScrollView className="px-4 my-6">
@@ -33,7 +46,7 @@ const Play = () => {
 
             <CustomButton 
                 title="Afficher la partition écrite"
-                handlePress={() => afficherPartitionEcrite()}
+                handlePress={() => console.log('^^')}
                 containerStyles="mt-5"
             
             />
@@ -49,13 +62,13 @@ const Play = () => {
                 <CustomButton 
                     title="Mode Educatif"
                     containerStyles='w-[48%]'
-                    handlePress={() => envoiTCP(true)}
+                    handlePress={handleEducatifClick}
                 />
 
                 <CustomButton 
                     title="Mode Solo"
                     containerStyles='w-[48%]'
-                    handlePress={() => envoiTCP(false)}
+                    handlePress={handleSoloClick}
                 />
             </View>
         </ScrollView>
@@ -68,10 +81,10 @@ export default Play
 const styles = StyleSheet.create({
     image: {
         width: '100%',
-        height: 224, // Equivalent to h-56 in Tailwind (56 * 4 = 224)
-        marginTop: 40 // Equivalent to mt-10 in Tailwind (10 * 4 = 40)
+        height: 224, 
+        marginTop: 40 
     },
     imageBorderRadius: {
-        borderRadius: 15 // Adjust this value to control the roundness
+        borderRadius: 15
     }
 })

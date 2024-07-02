@@ -5,6 +5,10 @@ node_modules/
 .env
 upload.py
 sync_midi_to_appwrite.py
+downloaded_midis
+dl_file.py
+dl_file.js
+midi_repertoire.db
 
 # Expo
 .expo/
